@@ -286,3 +286,9 @@ $ gpr
 $ RELEASE_VER=1.31
 $ kpr
 ```
+
+* copilot chatで変更内容の説明
+```
+:Octo pr changes
+```
+-＞`,ce`
