@@ -263,6 +263,9 @@ copilot.nvimとCopilotChat.nvimをインストールした。
 
 ```
 alias gpr='export GITHUB_TOKEN=$(gh auth token);GITHUB_REPONAME=$(ghq list | grep github.com | peco | cut -c 12- );nv -c ":Octo pr list $GITHUB_REPONAME"'
+
+# 上記の設定のみではmaster以外のブランチのpullrequestが表示されないため、以下の設定を追加する。
+alias kpr='export GITHUB_TOKEN=$(gh auth token);GITHUB_REPODIR=$(ghq list -p | grep github.com/kubernetes/kubernetes | peco);cd $GITHUB_REPODIR;TARGET_ID=$(gh pr list --state merged --base release-$RELEASE_VER | grep "#"| peco | cut -f1 );nv -c ":Octo https://github.com/kubernetes/kubernetes/pull/$TARGET_ID"'
 ```
 
 予めgh auth login を実行し、githubのアクセストークンを取得できる状態にしておくこと。
@@ -273,5 +276,13 @@ gprを実行すると、githubのリポジトリを選択できるようにな�
 pullrequestの一覧から、該当のpullrequestを選択すると、該当のpullrequestの内容が表示されるので、":Octo pr changes"を実行すると変更内容が表示される。その状態で",ce"を実行すると、CopilotChatで変更内容の説明が表示される。
 
 
+* pullrequestの一覧表示
+```
+$ gpr
+```
 
-
+* 特定ブランチのpullrequestの一覧表示
+```
+$ RELEASE_VER=1.31
+$ kpr
+```
