@@ -283,6 +283,7 @@ $ gpr
 
 * 特定ブランチのpullrequestの一覧表示
 ```
+$ export https_proxy=http://172.19.0.3:8080
 $ RELEASE_VER=1.31
 $ kpr
 ```
